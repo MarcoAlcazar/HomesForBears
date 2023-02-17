@@ -1,0 +1,9 @@
+{% if latest_names_list %}
+    <ul>
+    {% for names in latest_names_list %}
+        <li><a href="/myapp/{{ names.id }}/">{{ names.names_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

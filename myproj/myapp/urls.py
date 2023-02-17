@@ -3,7 +3,7 @@ from django.urls import path
 from . import views 
 
 urlpatterns = [
-    path(" ", views.index, name="index"),
+    path("", views.index, name="index"),
 
     path('<str:LandlordName>/', views.NameofLandlord, name = "Name of Landlord"), 
 

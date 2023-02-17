@@ -1,9 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Landlord
+from .models import LandlordReview
+from .models import Housing
+from .models import HousingReview
+from django.template import loader
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, world!")
+    latest_names_list = Landlord.objects.all()
+    context = {'latest_names_list': latest_names_list}
+    return render(request, 'myapp/index.html', context)
+
 
 def NameofLandlord(request, LandlordName):
     return HttpResponse("Youre looking at %s." % LandlordName)
