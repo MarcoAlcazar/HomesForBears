@@ -13,5 +13,6 @@ class Housing(models.Model):
     Description = models.CharField(max_length = 250)
     Rating = models.IntegerField()
     price = models.IntegerField()
+    LandLord = models.CharField(max_length = 200)
 
 
