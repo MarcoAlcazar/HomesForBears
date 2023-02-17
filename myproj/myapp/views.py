@@ -5,9 +5,17 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse("Hello, world!")
 
-def detail(request, landlords):
-    return HttpResponse("Youre looking at %s." % landlords)
+def NameofLandlord(request, LandlordName):
+    return HttpResponse("Youre looking at %s." % LandlordName)
 
-def detail(request, apartment):
-    return HttpResponse("Youre looking at %s." % apartment)
+def LandlordReviewList(request, LandlordName):
+    response = "Youre looking at the reviews of %s."
+    return HttpResponse(response % LandlordName)
+
+def ApartmentAddress(request, Address):
+    return HttpResponse("Youre looking at the place located in %s." % Address)
+
+def ApartmentReviewList(request, Address):
+    response = "Youre looking at the reviews of %s."
+    return HttpResponse(response % Address)
 
