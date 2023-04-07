@@ -6,13 +6,8 @@ from . import views
 urlpatterns = [
     path("", views.index, name="index"),
 
-    path('<str:LandlordName>/', views.NameofLandlord, name = "Name of Landlord"), 
+    path("create_review/", views.create_review, name="create_review"),
 
-    path('<str:LandlordName>/LandlordReviewList/', views.LandlordReviewList, name = "Reviews"),
-
-    path('<str:Adress>/', views.ApartmentAddress, name = "Address"),
-
-    path('<str:Adress>/ApartmentReviewList/', views.ApartmentReviewList, name = "Reviews"),
 
 
 
