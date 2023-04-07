@@ -13,4 +13,10 @@ def index(request):
 def create_review(request): 
     return render(request, 'myapp/create_review.html')
 
+def apartments(request):
+   return render(request, 'myapp/apartments.html')
+
+def about_us(request):
+   return render(request, 'myapp/about_us.html')
+
 
