@@ -5,6 +5,7 @@ from .models import Housing
 from django.template import loader
 from myapp.forms import LandlordForm
 from myapp.forms import HousingForm
+from django.shortcuts import redirect
 
 # Create your views here.
 def index(request):
@@ -29,10 +30,15 @@ def Landlord_create(request):
             {'form': form})
 
 def Housing_create(request):
-   form = HousingForm()
-   return render(request,
-            'myapp/Housing_create.html',
-            {'form': form})
-
+    if request.method == "POST":
+        form  = HousingForm(request.POST)
+        if form.is_valid():
+            housing = form.save()
+            return redirect('housing-detail', housing.id)
+    else:
+        form = HousingForm()
+    return render(request,
+                'myapp/Housing_create.html',
+                {'form': form})
 
 
