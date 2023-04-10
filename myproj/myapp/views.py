@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Landlord
-from .models import LandlordReview
 from .models import Housing
-from .models import HousingReview
 from django.template import loader
+from myapp.forms import LandlordForm
+from myapp.forms import HousingForm
 
 # Create your views here.
 def index(request):
@@ -18,6 +18,21 @@ def apartments(request):
 
 def about_us(request):
    return render(request, 'myapp/about_us.html')
+
+def review(request):
+   return render(request, 'myapp/Review_create.html')
+
+def Landlord_create(request):
+   form = LandlordForm()
+   return render(request,
+            'myapp/Landlord_create.html',
+            {'form': form})
+
+def Housing_create(request):
+   form = HousingForm()
+   return render(request,
+            'myapp/Housing_create.html',
+            {'form': form})
 
 
 

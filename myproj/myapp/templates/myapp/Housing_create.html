@@ -1,0 +1,6 @@
+<h1>Review Housing</h1>
+<form action="/housing/add/" method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
