@@ -20,3 +20,4 @@ def about_us(request):
    return render(request, 'myapp/about_us.html')
 
 
+
