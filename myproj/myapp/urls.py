@@ -8,7 +8,7 @@ urlpatterns = [
 
     path("create_review/", views.create_review, name="create_review"),
 
-    path("apartments/", views.apartments, name = 'apartments'),
+    path("apartments/", views.apartment_lists, name = 'apartments'),
 
     path("about_us/", views.about_us, name = 'about_us'),
 

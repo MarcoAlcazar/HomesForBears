@@ -1,3 +1,11 @@
 <h1>Housing</h1>
 
-   <a href="{% url 'Housing_create' %}">Review Housing</a>
+{% block content %}
+
+<ul>
+ {% for house in Housings %}
+  <li>{{ house.Landlord }}</li>
+ {% endfor %}
+</ul>
+
+{% endblock %}

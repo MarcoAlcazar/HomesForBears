@@ -14,8 +14,9 @@ def index(request):
 def create_review(request): 
     return render(request, 'myapp/create_review.html')
 
-def apartments(request):
-   return render(request, 'myapp/apartments.html')
+def apartment_lists(request):
+    housing = Housing.objects.all()
+    return render(request, 'myapp/housing_list.html', {'housing': housing})
 
 def about_us(request):
    return render(request, 'myapp/about_us.html')
@@ -23,22 +24,28 @@ def about_us(request):
 def review(request):
    return render(request, 'myapp/Review_create.html')
 
-def Landlord_create(request):
-   form = LandlordForm()
-   return render(request,
-            'myapp/Landlord_create.html',
-            {'form': form})
-
 def Housing_create(request):
     if request.method == "POST":
         form  = HousingForm(request.POST)
         if form.is_valid():
             housing = form.save()
-            return redirect('housing-detail', housing.id)
+            return redirect('index')
     else:
         form = HousingForm()
     return render(request,
                 'myapp/Housing_create.html',
+                {'form': form})
+
+def Landlord_create(request):
+    if request.method == "POST":
+        form = LandlordForm(request.POST)
+        if form.is_valid():
+            landlord = form.save()
+            return redirect('Housing_create')
+    else:
+        form = LandlordForm()
+    return render(request,
+                'myapp/Landlord_create.html',
                 {'form': form})
 
 
