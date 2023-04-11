@@ -1,6 +1,9 @@
 from django.urls import path 
 
 from . import views 
+from myapp.views import apartmentss
+
+
 
 
 urlpatterns = [
@@ -8,9 +11,11 @@ urlpatterns = [
 
     path("create_review/", views.create_review, name="create_review"),
 
-    path("housingg/", views.housingg, name = 'apartments'),
+    path("apartmentss/", apartmentss.as_view(), name = "apartmentss"), 
 
     path("about_us/", views.about_us, name = 'about_us'),
+
+    path("thankyou/", views.thankyou, name = 'thankyou'),
 
     path("Reviews/", views.review, name = 'Review_create'),
 

@@ -1,0 +1,30 @@
+
+
+{% block content %}
+
+        <h2>Apartments</h2>
+        {% for house in apartmentss %}
+        
+            <strong> Address: {{ house.Address }}</strong>
+            <u1>
+                <li> Description of Apartment/House:  {{ house.Description }}</li>
+                <li> Rating: {{ house.Rating }}</li>
+                <li> Price Per Month: {{ house.Price }}</li>
+                <li> LandLords Name: {{ house.LandLord }}</li>
+            </u1>
+            <br/>
+        {% endfor %}
+                </div>
+                    <h2>LandLords</h2>
+        {% for landlord in Landlords %}
+            <strong>LandLords Name: {{ landlord.FullName }}</strong>
+            <u1>
+                <li> Rating: {{ landlord.Rating }}</li>
+                <li> Description: {{ landlord.Description }}</li>
+            </u1>
+            <br/>
+        {% endfor %}
+                </div>
+            </div>
+        </div>
+{% endblock %}

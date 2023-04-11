@@ -1,14 +1,18 @@
 
 
 {% block content %}
-
- <h1>Review a Landlord</h1>
+{% load static %} 
+  <body style="background-color:  #003262;"></body>
+<center>
+  <div class="container">
+    <h1 class="text-center" style="font-family: 'Comic Sans MS', cursive; color: #FDB515;">Review LandLord</h1>
+    <br/><br/>
 
 <form action="/landlord/add/" method="post" novalidate>
   {% csrf_token %}
   {{ form.as_p }}
   <input type="submit" value="Submit">
 </form>
-
+</center>
 
 {% endblock %}

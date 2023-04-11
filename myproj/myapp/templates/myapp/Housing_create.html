@@ -1,6 +1,16 @@
-<h1>Review Housing</h1>
-<form action="/housing/add/" method="post" novalidate>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-</form>
+{% block content %}
+{% load static %} 
+  <body style="background-color: #FDB515 ;"></body>
+<center>
+    <div class="container">
+        <h1 class="text-center" style="font-family: 'Comic Sans MS', cursive; color: #003262;">Review Housing</h1>
+        <br/><br/>
+    <form action="/housing/add/" method="post" novalidate class="mt-5">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <!-- Add more form fields as needed -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</center>
+{% endblock %}

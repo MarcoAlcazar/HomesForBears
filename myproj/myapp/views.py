@@ -6,6 +6,8 @@ from django.template import loader
 from myapp.forms import LandlordForm
 from myapp.forms import HousingForm
 from django.shortcuts import redirect
+from django.views.generic import ListView
+
 
 # Create your views here.
 def index(request):
@@ -14,9 +16,15 @@ def index(request):
 def create_review(request): 
     return render(request, 'myapp/create_review.html')
 
-def housingg(request):
-    housing = Housing.objects.all()
-    return render(request, 'myapp/housingg.html', {'housing': housing})
+class apartmentss(ListView):
+    template_name = 'myapp/apartmentss.html'
+    model = Housing
+    context_object_name = 'apartmentss'
+    queryset = Housing.objects.all()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['Landlords'] = Landlord.objects.all()  # Add queryset for landlords to the context
+        return context
 
 def about_us(request):
    return render(request, 'myapp/about_us.html')
@@ -24,12 +32,15 @@ def about_us(request):
 def review(request):
    return render(request, 'myapp/Review_create.html')
 
+def thankyou(request):
+   return render(request, 'myapp/thankyou.html')
+
 def Housing_create(request):
     if request.method == "POST":
         form  = HousingForm(request.POST)
         if form.is_valid():
             housing = form.save()
-            return redirect('index')
+            return redirect('thankyou')
     else:
         form = HousingForm()
     return render(request,
