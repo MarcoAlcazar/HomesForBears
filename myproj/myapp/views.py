@@ -10,6 +10,14 @@ from django.views.generic import ListView
 
 
 # Create your views here.
+def show_landlord(request, landlord_id):
+    landlord = Landlord.objects.get(pk = landlord_id)
+    return render(request, 'myapp/show_landlord.html',{'landlord': landlord} )
+
+def show_house(request, house_id):
+    house = Housing.objects.get(pk = house_id)
+    return render(request, 'myapp/show_house.html',{'house': house} )
+
 def index(request):
     return render(request, 'myapp/index.html')
 

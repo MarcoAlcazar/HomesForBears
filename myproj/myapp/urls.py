@@ -23,6 +23,10 @@ urlpatterns = [
 
     path('housing/add/', views.Housing_create, name = 'Housing_create'),
 
+    path('show_house/<house_id>', views.show_house, name = "show-house"),
+
+    path('show_landlord/<landlord_id>', views.show_landlord, name = "show-landlord"),
+
 
 
 
