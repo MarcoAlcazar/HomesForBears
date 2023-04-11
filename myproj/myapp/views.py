@@ -14,9 +14,9 @@ def index(request):
 def create_review(request): 
     return render(request, 'myapp/create_review.html')
 
-def apartment_lists(request):
+def housingg(request):
     housing = Housing.objects.all()
-    return render(request, 'myapp/housing_list.html', {'housing': housing})
+    return render(request, 'myapp/housingg.html', {'housing': housing})
 
 def about_us(request):
    return render(request, 'myapp/about_us.html')
