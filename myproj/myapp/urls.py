@@ -26,6 +26,11 @@ urlpatterns = [
     path('show_house/<house_id>', views.show_house, name = "show-house"),
 
     path('show_landlord/<landlord_id>', views.show_landlord, name = "show-landlord"),
+    path('show_house/<house_id>', views.show_house, name = "show-apartment"),
+
+    path('search_landlords', views.search_landlords, name = 'search-landlords' ),
+
+    path('search_apartments', views.search_apartments, name = 'search-apartments' ),
 
 
 

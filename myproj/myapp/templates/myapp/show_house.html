@@ -1,6 +1,11 @@
 {% block content %}
     <center> 
-        <h1> House Address: </h1>
-        {{ house }}
+        <h1> {{ house.Address }} </h1>
+        Rating: {{ house.Rating }}/5 </br>
+        Description: </br>
+        {{ house.Description }} </br>
+        Price Per Month: ${{ house.Price }} </br>
+        LandLords Full Name: {{ house.LandLord }} </br>
+
     </center>
     {% endblock %}

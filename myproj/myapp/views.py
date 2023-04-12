@@ -10,6 +10,23 @@ from django.views.generic import ListView
 
 
 # Create your views here.
+def search_apartments(request):
+    if request.method == "POST": 
+        searched = request.POST.get('searched')
+        apartments = Housing.objects.filter(Address__contains= searched)
+        return render(request, 'myapp/search_apartment.html', {'searched' : searched, 'apartments': apartments })
+    else:
+        return render(request, 'myapp/search_apartment.html')
+
+    
+def search_landlords(request):
+    if request.method == "POST": 
+        searched = request.POST.get('searched')
+        landlords = Landlord.objects.filter(FullName__contains= searched)
+        return render(request, 'myapp/search_landlords.html', {'searched' : searched, 'landlords': landlords })
+    else:
+        return render(request, 'myapp/search_landlords.html')
+
 def show_landlord(request, landlord_id):
     landlord = Landlord.objects.get(pk = landlord_id)
     return render(request, 'myapp/show_landlord.html',{'landlord': landlord} )
