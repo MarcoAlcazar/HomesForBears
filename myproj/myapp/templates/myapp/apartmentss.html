@@ -1,20 +1,77 @@
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-{% block content %}
-<center>
-        <h2>Apartments</h2>
-        {% for house in apartmentss %}
-        <a href = "{% url 'show-house' house.id %}"
-        >{{ house.Address }} - Rating: {{ house.Rating }}/5 </a><br/>
-        {% endfor %}
-                </div>
-                    <h2>LandLords</h2>
-        {% for landlord in Landlords %}
-        <a href = "{% url 'show-landlord' landlord.id %}"
-        >{{ landlord.FullName }} - Rating: {{ landlord.Rating }}/5 </a><br/>
-        {% endfor %}
-                </div>
-            </div>
-        </div>
-    </center>
-{% endblock %}
+<!-- Include Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+    /* Define custom Berkeley blue color for background */
+    body {
+        background-color: #003262; /* Use the desired hexadecimal or RGB value for the Berkeley blue color */
+    }
+
+    /* Define custom Berkeley blue color for background of tables */
+    .custom-table-color {
+        background-color: #FDB515; /* Use the same color as the body background color */
+    }
+
+    /* Define custom dark blue color for links */
+    .custom-link-color {
+        color: #00008b; /* Use the desired hexadecimal or RGB value for the link color */
+    }
+    .custom-heading-color {
+        color: #FDB515; /* Use the desired hexadecimal or RGB value for the heading color */
+        font-family: 'Montserrat', sans-serif; /* Use the desired font name */
+    }
+</style>
+
+<!-- Your existing Bootstrap code -->
+
+<!-- Update table classes to include custom color class -->
+<div class="container mt-5">
+    <h2 class="custom-heading-color">Apartments</h2>
+    <table class="table table-hover custom-table-color"> <!-- Add custom-table-color class to apply the custom color -->
+        <thead>
+            <tr>
+                <th>Address</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for house in apartmentss %}
+            <tr>
+                <td>
+                    <a href="{% url 'show-house' house.id %}" class="custom-link-color"> <!-- Add custom-link-color class to apply the custom link color -->
+                        {{ house.Address }}
+                    </a>
+                </td>
+                <td>{{ house.Rating }}/5</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="container mt-5">
+    <h2 class="custom-heading-color">Landlords</h2>
+    <table class="table table-hover custom-table-color"> <!-- Add custom-table-color class to apply the custom color -->
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for landlord in Landlords %}
+            <tr>
+                <td>
+                    <a href="{% url 'show-landlord' landlord.id %}" class="custom-link-color"> <!-- Add custom-link-color class to apply the custom link color -->
+                        {{ landlord.FullName }}
+                    </a>
+                </td>
+                <td>{{ landlord.Rating }}/5</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
