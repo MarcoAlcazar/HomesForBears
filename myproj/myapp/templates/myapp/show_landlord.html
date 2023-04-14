@@ -4,5 +4,7 @@
         Rating: {{ landlord.Rating }}/5 </br>
         Description:</br>
         {{ landlord.Description }} </br>
+        <div style="margin-top: 60vh;"></div> <!-- Add a div with margin-top to push the home button to the bottom of the page -->
+        <a href="{% url 'index' %}" class="btn btn-primary" style="font-size: 18px; padding: 12px 30px; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);">Home</a> <!-- Use CSS to position the home button at the bottom of the page and centered horizontally -->
     </center>
     {% endblock %}
