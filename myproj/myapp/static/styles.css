@@ -27,3 +27,30 @@
 .berkeley-gold {
   color: #FDB515;
 }
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+.home-button {
+  font-size: 18px;
+  padding: 12px 30px;
+}
+
+.image-container {
+  width: 300px; /* Set the desired width and height for a square container */
+  height: 300px;
+  overflow: hidden;
+}
+
+.house-image {
+  width: 100%; /* Expand the image to fill the container */
+  height: 100%;
+  object-fit: cover; /* Crop and center the image within the container */
+}
+
+
+

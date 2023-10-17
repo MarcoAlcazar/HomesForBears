@@ -5,6 +5,7 @@
     <div class="container">
         <h1 class="text-center" style="font-family: 'Poppins', sans-serif; color: #003262;">Review Housing</h1>
         <br/><br/>
+        <br> <h1 class="text-center" style="font-family: 'Poppins', sans-serif; color: #003262;">Please use at least one image, not all 5 image slots need to be filled out</h1></br>
     <form action="/housing/add/" method="post" class="mt-5" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}

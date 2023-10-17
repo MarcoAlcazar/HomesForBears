@@ -35,6 +35,11 @@
             <tr>
                 <th>Address</th>
                 <th>Rating</th>
+                <th>Bedrooms</th>
+                <th>Bathrooms</th>
+                <th>Monthly Rent</th>
+                <th>Image</th>
+
             </tr>
         </thead>
         <tbody>
@@ -46,6 +51,10 @@
                     </a>
                 </td>
                 <td>{{ house.Rating }}/5</td>
+                <td> {{ house.Bedrooms }}</td>
+                <td> {{ house.Bathrooms }}</td>
+                <td> ${{ house.Price }}</td>
+                <td><img src="{{ house.housing_image.url }}"></td>
             </tr>
             {% endfor %}
         </tbody>

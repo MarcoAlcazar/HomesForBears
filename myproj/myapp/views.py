@@ -7,7 +7,7 @@ from myapp.forms import LandlordForm
 from myapp.forms import HousingForm
 from django.shortcuts import redirect
 from django.views.generic import ListView
-
+from django.forms import inlineformset_factory
 
 # Create your views here.
 def search_apartments(request):
