@@ -5,7 +5,7 @@
     <div class="container">
         <h1 class="text-center" style="font-family: 'Poppins', sans-serif; color: #003262;">Review Housing</h1>
         <br/><br/>
-    <form action="/housing/add/" method="post" novalidate class="mt-5">
+    <form action="/housing/add/" method="post" class="mt-5" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <!-- Add more form fields as needed -->

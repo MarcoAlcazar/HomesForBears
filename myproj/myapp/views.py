@@ -62,7 +62,7 @@ def thankyou(request):
 
 def Housing_create(request):
     if request.method == "POST":
-        form  = HousingForm(request.POST)
+        form  = HousingForm(request.POST, request.FILES)
         if form.is_valid():
             housing = form.save()
             return redirect('thankyou')
