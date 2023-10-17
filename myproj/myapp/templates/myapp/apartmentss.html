@@ -54,7 +54,9 @@
                 <td> {{ house.Bedrooms }}</td>
                 <td> {{ house.Bathrooms }}</td>
                 <td> ${{ house.Price }}</td>
+                {% if house.housing_image %}
                 <td><img src="{{ house.housing_image.url }}"></td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>
