@@ -31,6 +31,10 @@ class Housing(models.Model):
     housing_image4 = models.ImageField(null=True, blank=True, upload_to="images/")
     housing_image5 = models.ImageField(null=True, blank=True, upload_to="images/")
 
+    def __str__(self):
+        # Define how you want the object to be displayed
+        return self.Address
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.housing_image:
@@ -50,6 +54,10 @@ class Landlord(models.Model):
     FullName= models.CharField(max_length = 60, default = "")
     Rating = models.IntegerField(default = "", validators=[MinValueValidator(1), MaxValueValidator(5)])
     Description = models.CharField(max_length = 250, default = "")
+
+    def __str__(self):
+        # Define how you want the object to be displayed
+        return self.FullName
 
 
 

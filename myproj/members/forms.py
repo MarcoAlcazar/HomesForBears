@@ -3,9 +3,12 @@ from django.contrib.auth.models import User
 from django import forms
 
 class RegisterUserForm(UserCreationForm):
-    first_name = forms.CharField(max_length=50, widget= forms.TextInput(attrs={'class':'form-control'}))
-    last_name = forms.CharField(max_length=70, widget= forms.TextInput(attrs={'class':'form-control'}))
-    email = forms.EmailField(widget= forms.EmailInput(attrs={'class':'form-control'}))
+    first_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(max_length=70, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={'class': 'form-control'}),
+        label="Email (must be a @berkeley.edu email)"
+    )
 
     class Meta:
         model = User
@@ -14,9 +17,9 @@ class RegisterUserForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data['email']
         if not email.endswith('@berkeley.edu'):
-            raise forms.ValidationError("Email must be an @berkeley.edu")
+            raise forms.ValidationError("Email must be an @berkeley.edu email")
         return email
-    
+
     def __init__(self, *args, **kwargs):
         super(RegisterUserForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['class'] = 'form-control'
