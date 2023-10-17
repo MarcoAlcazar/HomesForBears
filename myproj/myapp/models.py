@@ -9,6 +9,7 @@ class Housing(models.Model):
     Rating = models.IntegerField(default = "", validators=[MinValueValidator(1), MaxValueValidator(5)])
     Price = models.IntegerField(default="", validators=[MinValueValidator(500), MaxValueValidator(50000)])
     LandLord = models.CharField(max_length = 200, default = "")
+    housing_image = models.ImageField(null=True, blank=True, upload_to="images/")
 
 
 class Landlord(models.Model):

@@ -2,17 +2,23 @@
 
 {% block content %}
 {% load static %} 
+{% if user.is_authenticated %}
   <body style="background-color:  #003262;"></body>
 <center>
   <div class="container">
     <h1 class="text-center" style="font-family: 'Poppins', sans-serif; color: #FDB515;">Review LandLord</h1>
     <br/><br/>
 
-<form action="/landlord/add/" method="post" novalidate>
+<form action="/landlord/add/" method="post"  enctype="multipart/form-data">
   {% csrf_token %}
   {{ form.as_p }}
   <input type="submit" value="Submit">
 </form>
 </center>
+
+{% else %}
+<h1> Sorry! You Must Be Logged In To View This Page...</h1>
+<a href = "{% url 'login' %}""> Login Here</a>
+{% endif %}
 
 {% endblock %}
