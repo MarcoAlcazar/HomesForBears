@@ -8,13 +8,18 @@
 <br></br>
 </center>
 
-<div class = "form-group">
-    <form method ="POST">
+<div class="form-group">
+    <form method="POST">
         {% csrf_token %}
+        <a href="{% url 'password_change' %}">Change Password</a>
         {{ form.as_p }}
-        <button class = "btn btn-secondary">Update Profile</button>
+        <h2 style="font-size: 20px;">Ignore the text above, use the button at the top of the page to change your password</h2>
+        <button class="btn btn-secondary">Update Profile</button>
     </form>
 </div>
+</div>
+
+
 
 {% endblock %}
 

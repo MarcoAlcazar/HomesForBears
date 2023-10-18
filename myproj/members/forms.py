@@ -36,8 +36,15 @@ class EditProfileForm(UserChangeForm):
         label="Email (must be a @berkeley.edu email)"
     )
     username = forms.CharField(max_length=70, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password',)
+        fields = ('username', 'first_name', 'last_name', 'email')
+
+    # Customize labels to remove the password message
+    def __init__(self, *args, **kwargs):
+        super(EditProfileForm, self).__init__(*args, **kwargs)
+        self.fields['username'].label = "Username"
+        self.fields['first_name'].label = "First Name"
+        self.fields['last_name'].label = "Last Name"
+        self.fields['email'].label = "Email"
