@@ -2,15 +2,18 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .forms import RegisterUserForm
+from .forms import RegisterUserForm, EditProfileForm
 from django.views import generic
 from django.shortcuts import render 
 from django.urls import reverse_lazy
 
-class UserEditView(generic.CreateView):
-    form_class = UserChangeForm
-    template_name = 'registration/edit_profile.html'
+class UserEditView(generic.UpdateView):
+    form_class = EditProfileForm
+    template_name = 'authenticate/edit_profile.html'
     success_url = reverse_lazy('index')
+
+    def get_object(self):
+        return self.request.user
 
 
 def login_user(request): 
