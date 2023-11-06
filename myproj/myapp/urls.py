@@ -32,6 +32,8 @@ urlpatterns = [
     path('search_landlords', views.search_landlords, name = 'search-landlords' ),
 
     path('search_apartments', views.search_apartments, name = 'search-apartments' ),
-    
-    path('password/change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
+    path("reset_password/", auth_views.PasswordResetView.as_view(
+        template_name = "authenticate/password_reset.html"), name = "reset_password"),
+    path("reset_password_complete/", auth_views.PasswordResetCompleteView.as_view(
+        template_name = "authenticate/password_reset_done.html"), name = "password_reset_complete"),
 ]
