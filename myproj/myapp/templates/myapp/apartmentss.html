@@ -30,7 +30,34 @@
 <!-- Your existing Bootstrap code -->
 
 <!-- Update table classes to include custom color class -->
-{% include 'myapp/nav.html' %}
+{% load static %}
+    <center>
+    <style>
+        /* Define custom font */
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
+        
+        /* Apply custom font and size to h1 element */
+        h1 {
+            font-family: 'Poppins', sans-serif; /* Use the custom font */
+            font-size: 48px; /* Use the desired font size */
+            font-weight: 700; /* Use the desired font weight */
+            text-align: center; /* Use the desired text alignment */
+            margin-top: 100px; /* Use the desired margin top value */
+            background-color: #003262; /* Use the Berkeley gold color for the background */
+            color: #FDB515; /* Use the Berkeley blue color for the text */
+            padding: 20px; /* Add padding to the text for better visibility */
+        }
+    </style>
+<style>
+  /* Define a CSS class for the Berkeley gold color */
+  .berkeley-gold {
+    color: #FDB515;
+  }
+</style>
+    <h1 class='berkeley-gold'>Homes For Bears</h1>
+    {% include 'myapp/nav.html' %}
+
+  </center>
 <div class="container mt-5">
     <h2 class="custom-heading-color">Housing</h2>
     <table class="table table-hover custom-table-color"> <!-- Add custom-table-color class to apply the custom color -->

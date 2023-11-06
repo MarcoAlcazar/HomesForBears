@@ -1,8 +1,9 @@
 {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'path-to-your-styles.css' %}">
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'path-to-your-styles.css' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HomesForBears</title>
@@ -41,12 +42,16 @@
 </style>
 <body>
     <h1 class='berkeley-gold'>Homes For Bears</h1>
+    {% if user.is_authenticated %}
+    <h1 class="berkeley-gold smaller-font">Hello {{ user.first_name }}</h1>
+    {% else %}
+    {% endif %}
+    {% include 'myapp/nav.html' %}
 </body>
 </html>
 
   </center>
   </body>
-  {% include 'myapp/nav.html' %}
   {% load static %} 
   <div class = "container">
     {% if messages  %}
