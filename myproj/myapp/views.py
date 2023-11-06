@@ -28,12 +28,14 @@ def search_landlords(request):
         return render(request, 'myapp/search_landlords.html')
 
 def show_landlord(request, landlord_id):
+    user_username = request.session.get('user_username', None)
     landlord = Landlord.objects.get(pk = landlord_id)
-    return render(request, 'myapp/show_landlord.html',{'landlord': landlord} )
+    return render(request, 'myapp/show_landlord.html',{'landlord': landlord,  'user_username': user_username} )
 
 def show_house(request, house_id):
+    user_username = request.session.get('user_username', None)
     house = Housing.objects.get(pk = house_id)
-    return render(request, 'myapp/show_house.html',{'house': house} )
+    return render(request, 'myapp/show_house.html',{'house': house, 'user_username': user_username} )
 
 def index(request):
     return render(request, 'myapp/index.html')
@@ -62,6 +64,7 @@ def thankyou(request):
 
 def Housing_create(request):
     if request.method == "POST":
+        request.session['user_username'] = request.user.username
         form  = HousingForm(request.POST, request.FILES)
         if form.is_valid():
             housing = form.save()
@@ -74,6 +77,7 @@ def Housing_create(request):
 
 def Landlord_create(request):
     if request.method == "POST":
+        request.session['user_username'] = request.user.username
         form = LandlordForm(request.POST)
         if form.is_valid():
             landlord = form.save()
