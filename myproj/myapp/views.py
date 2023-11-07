@@ -8,6 +8,7 @@ from myapp.forms import HousingForm
 from django.shortcuts import redirect
 from django.views.generic import ListView
 from django.forms import inlineformset_factory
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def search_apartments(request):
@@ -44,14 +45,63 @@ def create_review(request):
     return render(request, 'myapp/create_review.html')
 
 class apartmentss(ListView):
-    template_name = 'myapp/apartmentss.html'
-    model = Housing
-    context_object_name = 'apartmentss'
-    queryset = Housing.objects.all()
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['Landlords'] = Landlord.objects.all()  # Add queryset for landlords to the context
-        return context
+   template_name = 'myapp/apartmentss.html'
+   context_object_name = 'apartmentss'
+   model = Housing
+   paginate_by = 6
+
+
+   def get_context_data(self, **kwargs):
+       context = super().get_context_data(**kwargs)
+
+
+       # Get all apartments
+       apartment_queryset = Housing.objects.all()
+
+
+       # Paginate the apartment queryset
+       apartment_paginator = Paginator(apartment_queryset, self.paginate_by)
+
+
+       # Get the current page number for apartments
+       apartment_page = self.request.GET.get('apartment_page')
+
+
+       try:
+           apartments = apartment_paginator.get_page(apartment_page)
+       except PageNotAnInteger:
+           apartments = apartment_paginator.get_page(1)
+       except EmptyPage:
+           apartments = apartment_paginator.get_page(apartment_paginator.num_pages)
+
+
+       context['apartments'] = apartments
+
+
+       # Get all landlords
+       landlord_queryset = Landlord.objects.all()
+
+
+       # Paginate the landlord queryset
+       landlord_paginator = Paginator(landlord_queryset, self.paginate_by)
+
+
+       # Get the current page number for landlords
+       landlord_page = self.request.GET.get('landlord_page')
+
+
+       try:
+           landlords = landlord_paginator.get_page(landlord_page)
+       except PageNotAnInteger:
+           landlords = landlord_paginator.get_page(1)
+       except EmptyPage:
+           landlords = landlord_paginator.get_page(landlord_paginator.num_pages)
+
+
+       context['landlords'] = landlords
+
+
+       return context
 
 def about_us(request):
    return render(request, 'myapp/about_us.html')
