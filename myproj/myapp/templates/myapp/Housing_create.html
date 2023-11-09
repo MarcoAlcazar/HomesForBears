@@ -4,6 +4,7 @@
 {% include 'myapp/nav.html' %}
 {% block content %}
 {% load static %} 
+{% if user.is_authenticated %}
   <body style="background-color: #0848a2 ;"></body>
 <center>
     <div class="container">
@@ -18,4 +19,16 @@
     </form>
 </div>
 </center>
+{% else %}
+    
+      <center>
+        <h1>Sorry! You Must Be Logged In To View This Page...</h1>
+        <br><br>
+        <a href="{% url 'login' %}" class="btn btn-warning">Login Here</a>
+        <br><br>
+        <a href="{% url 'register_user' %}" class="btn btn-warning">Register Here</a>
+        <br><br>
+        <a href="{% url 'index' %}" class="btn btn-warning">Home</a>
+      </center>
+    {% endif %}
 {% endblock %}
