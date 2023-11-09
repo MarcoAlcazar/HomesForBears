@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .forms import RegisterUserForm, EditProfileForm
 from django.views import generic
@@ -42,6 +43,19 @@ def logout_user(request) :
     return redirect('index')
 
 def activate(request, uidb64, token):
+    User = get_user_model()
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except:
+        user= None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        messages.success(request, "Thank you for activating your account, you may now login.")
+        return redirect('index')
+    else:
+        messages.error(request, "Activation link is invalid")
     return redirect('index')
 
 def activateEmail(request, user, to_email):
@@ -54,7 +68,7 @@ def activateEmail(request, user, to_email):
                             'protocol':'https' if request.is_secure() else 'http'})
     email = EmailMessage(mail_subject, message, to =[to_email])
     if email.send():
-        messages.success(request, f'Dear <b>{user}</b>, please go to your email at <b>{to_email}</b> and click on the recieved activation link to complete registration. <b>Note:</b> Check your spam folder.')
+        messages.success(request, f'Dear {user}, please go to your email at {to_email}, and click on the recieved activation link to complete registration. Note: Check your spam folder.')
     else:
         message.error(request, f'There was an error sending email to {to_email}, check for spelling mistakes.')
 
