@@ -48,7 +48,7 @@
     <h1 class='berkeley-gold'>Homes For Bears</h1>
     {% include 'myapp/nav.html' %}
     {% if user.is_authenticated %}
-    <h1 class="berkeley-gold smaller-font">Hello {{ user.first_name }}</h1>
+    <h1 class="berkeley-gold smaller-font">Hello, {{ user.first_name }}!</h1>
     {% else %}
     {% endif %}
   

@@ -44,6 +44,6 @@ class HousingForm(forms.ModelForm):
             'Bathrooms': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Number of Bathrooms', 'style': 'height: 50px; width: 300px; resize: none;'}),
             'Description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Description', 'style': 'height: 200px; width: 400px; resize: none;'}),
             'Rating': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Rating (Number From 1-5)', 'style': 'height: 50px; width: 300px; resize: none;'}),
-            'Price': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Price Per Month', 'style': 'height: 50px; width: 300px; resize: none;'}),
+            'Price': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter how much you pay per month', 'style': 'height: 50px; width: 300px; resize: none;'}),
             'LandLord': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter LandLords Full Name, Example: Hugh Manatee', 'style': 'height: 50px; width: 300px; resize: none;'}),
         }

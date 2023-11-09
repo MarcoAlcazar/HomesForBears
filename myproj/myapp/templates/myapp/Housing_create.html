@@ -4,12 +4,12 @@
 {% include 'myapp/nav.html' %}
 {% block content %}
 {% load static %} 
-  <body style="background-color: #FDB515 ;"></body>
+  <body style="background-color: #0848a2 ;"></body>
 <center>
     <div class="container">
-        <h1 class="text-center" style="font-family: 'Poppins', sans-serif; color: #003262;">Review Housing</h1>
+        <h1 class="text-center" style="font-family: 'Poppins', sans-serif; color: #c9c9c9;">Review Housing</h1>
         <br/><br/>
-        <br> <h1 class="text-center" style="font-family: 'Poppins', sans-serif; color: #003262;">Please use at least one image, not all 5 image slots need to be filled out</h1></br>
+        <br> <h1 class="text-center" style="font-family: 'Poppins', sans-serif; color: #c9c9c9;">Please use at least one image, not all 5 image slots need to be filled out</h1></br>
     <form action="/housing/add/" method="post" class="mt-5" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
