@@ -31,7 +31,7 @@ def login_user(request):
             login(request, user)
             return redirect('index')
         else: 
-            messages.success(request, ('There Was An Error Logging In, Try Again...'))
+            messages.success(request, ('There Was An Error Logging In, Try Again And Make Sure Your Account Is Activated (Check Your Email)...'))
             return redirect('login')
 
     else:
