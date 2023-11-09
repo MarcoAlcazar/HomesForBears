@@ -10,7 +10,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes, force_str 
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
-from .tokens.py import account_activation_token
+from .tokens import account_activation_token
 
 class UserEditView(generic.UpdateView):
     form_class = EditProfileForm
@@ -41,23 +41,30 @@ def logout_user(request) :
     messages.success(request, ("You Have Been Logged Out!"))
     return redirect('index')
 
+def activate(request, uidb64, token):
+    return redirect('index')
+
 def activateEmail(request, user, to_email):
     mail_subject = "Activate your user account"
-    message = render_to_string("template_activate_account.html", {
+    message = render_to_string("tempalte_activate_account.html", {
                             'user': user.username,
                             'domain': get_current_site(request).domain,
-                            'uid': urlsafe_base64_decode(force_bytes(user.pk)),
-                            'token': account_activation_token.make_token })
-    messages.success(request, f'Dear <b>{user}</b>, please go to your email at <b>{to_email}</b> and click on the recieved activation link to complete registration. <b>Note:</b> Check your spam folder.')
-
+                            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                            'token': account_activation_token.make_token(user),
+                            'protocol':'https' if request.is_secure() else 'http'})
+    email = EmailMessage(mail_subject, message, to =[to_email])
+    if email.send():
+        messages.success(request, f'Dear <b>{user}</b>, please go to your email at <b>{to_email}</b> and click on the recieved activation link to complete registration. <b>Note:</b> Check your spam folder.')
+    else:
+        message.error(request, f'There was an error sending email to {to_email}, check for spelling mistakes.')
 def register_user(request) :
     if request.method == "POST":
         form = RegisterUserForm(request.POST)
         if form.is_valid():
             user = form.save(commit = False)
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user = authenticate(username = username, password = password)
+            #username = form.cleaned_data['username']
+            #password = form.cleaned_data['password1']
+            #user = authenticate(username = username, password = password)
             user.is_active = False
             user.save()
             activateEmail(request, user, form.cleaned_data.get('email'))
