@@ -46,7 +46,7 @@ def activate(request, uidb64, token):
 
 def activateEmail(request, user, to_email):
     mail_subject = "Activate your user account"
-    message = render_to_string("tempalte_activate_account.html", {
+    message = render_to_string("template_activate_account.html", {
                             'user': user.username,
                             'domain': get_current_site(request).domain,
                             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -57,6 +57,7 @@ def activateEmail(request, user, to_email):
         messages.success(request, f'Dear <b>{user}</b>, please go to your email at <b>{to_email}</b> and click on the recieved activation link to complete registration. <b>Note:</b> Check your spam folder.')
     else:
         message.error(request, f'There was an error sending email to {to_email}, check for spelling mistakes.')
+
 def register_user(request) :
     if request.method == "POST":
         form = RegisterUserForm(request.POST)
@@ -68,8 +69,6 @@ def register_user(request) :
             user.is_active = False
             user.save()
             activateEmail(request, user, form.cleaned_data.get('email'))
-            login(request, user)
-            messages.success(request, ("You Are Now Registered!"))
             return redirect('index')
     else: 
         form  = RegisterUserForm()
