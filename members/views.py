@@ -4,8 +4,13 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .forms import RegisterUserForm, EditProfileForm
 from django.views import generic
-from django.shortcuts import render 
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.encoding import force_bytes, force_str 
 from django.urls import reverse_lazy
+from django.core.mail import EmailMessage
+from .token import account_activation_token
 
 class UserEditView(generic.UpdateView):
     form_class = EditProfileForm
@@ -36,14 +41,26 @@ def logout_user(request) :
     messages.success(request, ("You Have Been Logged Out!"))
     return redirect('index')
 
+def activateEmail(request, user, to_email):
+    mail_subject = "Activate your user account"
+    message = render_to_string("template_activate_account.html", {
+                            'user': user.username,
+                            'domain': get_current_site(request).domain,
+                            'uid': urlsafe_base64_decode(force_bytes(user.pk)),
+                            'token': account_activation_token.make_token })
+    messages.success(request, f'Dear <b>{user}</b>, please go to your email at <b>{to_email}</b> and click on the recieved activation link to complete registration. <b>Note:</b> Check your spam folder.')
+
 def register_user(request) :
     if request.method == "POST":
         form = RegisterUserForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save(commit = False)
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(username = username, password = password)
+            user.is_active = False
+            user.save()
+            activateEmail(request, user, form.cleaned_data.get('email'))
             login(request, user)
             messages.success(request, ("You Are Now Registered!"))
             return redirect('index')
