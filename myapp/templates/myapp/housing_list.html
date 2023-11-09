@@ -1,0 +1,12 @@
+<h1>Hog</h1>
+
+{% block content %}
+
+<ul>
+{% for house in Housing %}
+<p>{{ house.Landlord }}</p>
+{% endfor %}
+</ul>
+
+{% endblock %}
+

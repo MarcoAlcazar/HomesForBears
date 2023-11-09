@@ -1,0 +1,61 @@
+
+<title>HomesForBears</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+{% include 'myapp/nav.html' %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Landlord</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIa6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+      body {
+          background-color: #0848a2;
+      }
+
+      .container-wrapper {
+          background-color: #ffffff; /* Set your desired background color */
+          border-radius: 15px; /* Set the border radius for rounded corners */
+          padding: 20px; /* Optional: Add padding for better spacing */
+          margin-top: 20px; /* Optional: Adjust margin for top spacing */
+      }
+
+      h1 {
+          color: #626262;
+          font-family: 'Poppins', sans-serif;
+      }
+  </style>
+</head>
+<body>
+  <br><br>
+  <br><br>
+  <br><br>
+  <div class="container container-wrapper">
+    
+    {% if user.is_authenticated %}
+      <center>
+        <h1 class="text-center">Review Landlord</h1>
+        <br><br>
+        <form action="/landlord/add/" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="Submit" class="btn btn-primary">
+        </form>
+      </center>
+    {% else %}
+    
+      <center>
+        <h1>Sorry! You Must Be Logged In To View This Page...</h1>
+        <br><br>
+        <a href="{% url 'login' %}" class="btn btn-warning">Login Here</a>
+        <br><br>
+        <a href="{% url 'register_user' %}" class="btn btn-warning">Register Here</a>
+        <br><br>
+        <a href="{% url 'index' %}" class="btn btn-warning">Home</a>
+      </center>
+    {% endif %}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
+
