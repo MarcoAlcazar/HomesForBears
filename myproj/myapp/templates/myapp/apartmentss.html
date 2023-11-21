@@ -1,5 +1,3 @@
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
@@ -54,13 +52,12 @@
     color: #FDB515;
   }
 </style>
-    <h1 class='berkeley-gold'>Homes For Bears</h1>
     {% include 'myapp/nav.html' %}
 
   </center>
-  <div class="container mt-5">
+<div class="container mt-5">
     <h2 class="custom-heading-color">Housing</h2>
-    <table class="table table-hover custom-table-color">
+    <table class="table table-hover custom-table-color"> <!-- Add custom-table-color class to apply the custom color -->
         <thead>
             <tr>
                 <th>Address</th>
@@ -69,20 +66,21 @@
                 <th>Bathrooms</th>
                 <th>Monthly Rent</th>
                 <th>Image</th>
+
             </tr>
         </thead>
         <tbody>
-            {% for house in apartments %}
+            {% for house in apartmentss %}
             <tr>
                 <td>
-                    <a href="{% url 'show-house' house.id %}" class="custom-link-color">
+                    <a href="{% url 'show-house' house.id %}" class="custom-link-color"> <!-- Add custom-link-color class to apply the custom link color -->
                         {{ house.Address }}
                     </a>
                 </td>
                 <td>{{ house.Rating }}/5</td>
-                <td>{{ house.Bedrooms }}</td>
-                <td>{{ house.Bathrooms }}</td>
-                <td>${{ house.Price }}</td>
+                <td> {{ house.Bedrooms }}</td>
+                <td> {{ house.Bathrooms }}</td>
+                <td> ${{ house.Price }}</td>
                 {% if house.housing_image %}
                 <td><img src="{{ house.housing_image.url }}"></td>
                 {% endif %}
@@ -90,31 +88,11 @@
             {% endfor %}
         </tbody>
     </table>
- 
- 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            {% if apartments.has_previous %}
-                <li class="page-item"><a class="page-link" href="?apartment_page=1">&laquo; first</a></li>
-                <li class="page-item"><a class="page-link" href="?apartment_page={{ apartments.previous_page_number }}">previous</a></li>
-            {% endif %}
- 
- 
-            <li class="page-item"><span class="page-link current-page">{{ apartments.number }} of {{ apartments.paginator.num_pages }}</span></li>
- 
- 
-            {% if apartments.has_next %}
-                <li class="page-item"><a class="page-link" href="?apartment_page={{ apartments.next_page_number }}">next</a></li>
-                <li class="page-item"><a class="page-link" href="?apartment_page={{ apartments.paginator.num_pages }}">last &raquo;</a></li>
-            {% endif %}
-        </ul>
-    </nav>
- </div>
- 
- 
- <div class="container mt-5">
+</div>
+
+<div class="container mt-5">
     <h2 class="custom-heading-color">Landlords</h2>
-    <table class="table table-hover custom-table-color">
+    <table class="table table-hover custom-table-color"> <!-- Add custom-table-color class to apply the custom color -->
         <thead>
             <tr>
                 <th>Full Name</th>
@@ -122,10 +100,10 @@
             </tr>
         </thead>
         <tbody>
-            {% for landlord in landlords %}
+            {% for landlord in Landlords %}
             <tr>
                 <td>
-                    <a href="{% url 'show-landlord' landlord.id %}" class="custom-link-color">
+                    <a href="{% url 'show-landlord' landlord.id %}" class="custom-link-color"> <!-- Add custom-link-color class to apply the custom link color -->
                         {{ landlord.FullName }}
                     </a>
                 </td>
@@ -134,23 +112,4 @@
             {% endfor %}
         </tbody>
     </table>
- 
- 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            {% if landlords.has_previous %}
-                <li class="page-item"><a class="page-link" href="?landlord_page=1">&laquo; first</a></li>
-                <li class="page-item"><a class="page-link" href="?landlord_page={{ landlords.previous_page_number }}">previous</a></li>
-            {% endif %}
- 
- 
-            <li class="page-item"><span class="page-link current-page">{{ landlords.number }} of {{ landlords.paginator.num_pages }}</span></li>
- 
- 
-            {% if landlords.has_next %}
-                <li class="page-item"><a class= "page-link" href="?landlord_page={{ landlords.next_page_number }}">next</a></li>
-                <li class="page-item"><a class="page-link" href="?landlord_page={{ landlords.paginator.num_pages }}">last &raquo;</a></li>
-            {% endif %}
-        </ul>
-    </nav>
- </div>
+</div>
