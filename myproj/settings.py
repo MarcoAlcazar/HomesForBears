@@ -31,6 +31,21 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AWS_ACCESS_KEY_ID = 'AKIAW3TQQ24DQLMETE3L'
+AWS_SECRET_ACCESS_KEY = 'OVZMdwBQ1htTxFog7Sy7QAsCRySx+QmOeHzugU2R'
+AWS_STORAGE_BUCKET_NAME = 'homesforbears'
+AWS_S3_REGION_NAME = 'us-west-1'  # e.g., us-west-2
+AWS_S3_CUSTOM_DOMAIN = f'http://homesforbears.s3-website-us-west-1.amazonaws.com'
+
+# Use Amazon S3 for storage for uploaded media files.
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# Use Amazon S3 for storage for static files.
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# Additional settings
+AWS_QUERYSTRING_AUTH = False  # Remove querystring authentication for public access
+
 
 # Application definition
 
