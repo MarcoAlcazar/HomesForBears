@@ -35,8 +35,13 @@ ALLOWED_HOSTS = []
 AWS_ACCESS_KEY_ID = 'AKIAW3TQQ24DQLMETE3L'
 AWS_SECRET_ACCESS_KEY = 'OVZMdwBQ1htTxFog7Sy7QAsCRySx+QmOeHzugU2R'
 AWS_STORAGE_BUCKET_NAME = 'homesforbears'
+AWS_S3_SIGNATURE_NAME = 's3v4'
 AWS_S3_REGION_NAME = 'us-west-1'  # e.g., us-west-2
 AWS_S3_CUSTOM_DOMAIN = f'homesforbears.s3-website-us-west-1.amazonaws.com'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_VERIFY = True
+
 
 # Use Amazon S3 for storage for uploaded media files.
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
@@ -145,8 +150,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
-MEDIA_ROOT = '/media/'
+STATIC_URL = f'https://homesforbears.s3-website-us-west-1.amazonaws.com/static/'
+MEDIA_ROOT = f'https://homesforbears.s3-website-us-west-1.amazonaws.com/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
