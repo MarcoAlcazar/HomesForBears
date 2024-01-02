@@ -2,6 +2,9 @@ from django.db import models
 from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator
 from PIL import Image 
+from django.db import models
+from storages.backends.s3boto3 import S3Boto3Storage
+
 
 # Create your models here.
 def resize_image(image, max_width=500, max_height=500):
@@ -47,8 +50,6 @@ class Housing(models.Model):
             resize_image(self.housing_image4)
         if self.housing_image5:
             resize_image(self.housing_image5)
-
-
 
 class Landlord(models.Model):
     FullName= models.CharField(max_length = 60, default = "")
