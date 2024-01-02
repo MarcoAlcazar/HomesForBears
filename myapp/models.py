@@ -18,7 +18,7 @@ def resize_image(image, max_width=500, max_height=500):
 
 class Housing(models.Model):
     # ... Your other model fields ...
-    Address = models.CharField(max_length=50, upload_to="images/")
+    Address = models.CharField(max_length=50)
     Bedrooms = models.IntegerField(default="", validators=[MinValueValidator(1), MaxValueValidator(25)])
     Bathrooms = models.IntegerField(default="", validators=[MinValueValidator(1), MaxValueValidator(25)])
     Description = models.CharField(max_length=250, default="")
