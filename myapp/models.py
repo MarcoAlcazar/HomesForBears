@@ -18,13 +18,13 @@ def resize_image(image, max_width=500, max_height=500):
 
 class Housing(models.Model):
     # ... Your other model fields ...
-    Address = models.CharField(max_length=50)
-    Bedrooms = models.IntegerField(default="", validators=[MinValueValidator(1), MaxValueValidator(25)])
-    Bathrooms = models.IntegerField(default="", validators=[MinValueValidator(1), MaxValueValidator(25)])
-    Description = models.CharField(max_length=250, default="")
-    Rating = models.IntegerField(default="", validators=[MinValueValidator(1), MaxValueValidator(5)])
-    Price = models.IntegerField(default="", validators=[MinValueValidator(500), MaxValueValidator(50000)])
-    LandLord = models.CharField(max_length=200, default="")
+    Address = models.CharField(max_length=50, upload_to="images/")
+    Bedrooms = models.IntegerField(default="", validators=[MinValueValidator(1), MaxValueValidator(25)], upload_to="images/")
+    Bathrooms = models.IntegerField(default="", validators=[MinValueValidator(1), MaxValueValidator(25)], upload_to="images/")
+    Description = models.CharField(max_length=250, default="", upload_to="images/")
+    Rating = models.IntegerField(default="", validators=[MinValueValidator(1), MaxValueValidator(5)], upload_to="images/")
+    Price = models.IntegerField(default="", validators=[MinValueValidator(500), MaxValueValidator(50000)], upload_to="images/")
+    LandLord = models.CharField(max_length=200, default="", upload_to="images/")
     housing_image = models.ImageField(null=True, blank=True, upload_to="images/")
     housing_image2 = models.ImageField(null=True, blank=True, upload_to="images/")
     housing_image3 = models.ImageField(null=True, blank=True, upload_to="images/")
@@ -35,7 +35,7 @@ class Housing(models.Model):
         # Define how you want the object to be displayed
         return self.Address
 
-    def save(self, *args, **kwargs):
+    #def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.housing_image:
             resize_image(self.housing_image)
@@ -51,9 +51,9 @@ class Housing(models.Model):
 
 
 class Landlord(models.Model):
-    FullName= models.CharField(max_length = 60, default = "")
-    Rating = models.IntegerField(default = "", validators=[MinValueValidator(1), MaxValueValidator(5)])
-    Description = models.CharField(max_length = 250, default = "")
+    FullName= models.CharField(max_length = 60, default = "", upload_to="images/")
+    Rating = models.IntegerField(default = "", validators=[MinValueValidator(1), MaxValueValidator(5)], upload_to="images/")
+    Description = models.CharField(max_length = 250, default = "", upload_to="images/")
 
     def __str__(self):
         # Define how you want the object to be displayed
