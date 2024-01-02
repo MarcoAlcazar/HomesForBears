@@ -51,9 +51,9 @@ class Housing(models.Model):
 
 
 class Landlord(models.Model):
-    FullName= models.CharField(max_length = 60, default = "", upload_to="images/")
-    Rating = models.IntegerField(default = "", validators=[MinValueValidator(1), MaxValueValidator(5)], upload_to="images/")
-    Description = models.CharField(max_length = 250, default = "", upload_to="images/")
+    FullName= models.CharField(max_length = 60, default = "")
+    Rating = models.IntegerField(default = "", validators=[MinValueValidator(1), MaxValueValidator(5)])
+    Description = models.CharField(max_length = 250, default = "")
 
     def __str__(self):
         # Define how you want the object to be displayed
