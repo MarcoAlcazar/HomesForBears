@@ -32,15 +32,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AWS_ACCESS_KEY_ID = 'AKIAW3TQQ24DQLMETE3L'
-AWS_SECRET_ACCESS_KEY = 'OVZMdwBQ1htTxFog7Sy7QAsCRySx+QmOeHzugU2R'
-AWS_STORAGE_BUCKET_NAME = 'homesforbears'
-AWS_S3_SIGNATURE_NAME = 's3v4'
-AWS_S3_REGION_NAME = 'us-west-1'  # e.g., us-west-2
-AWS_S3_CUSTOM_DOMAIN = f'homesforbears.s3-website-us-west-1.amazonaws.com'
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-AWS_S3_VERIFY = True
+AWS_ACCESS_KEY_ID = 'AKIAX7CRDYXPRGENWTPW'
+AWS_SECRET_ACCESS_KEY = 'Sy/IqGkGwDi6meF24mDugyTNkekemRQeeh8jFTGI'
+AWS_STORAGE_BUCKET_NAME = 'bucketeer-771f73d2-54bd-46b9-9588-5ec93998b28d'
+AWS_S3_REGION_NAME = 'us-east-1'  # e.g., us-west-2
 
 
 # Use Amazon S3 for storage for uploaded media files.
