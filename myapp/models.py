@@ -5,6 +5,8 @@ import json
 import boto3
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from botocore.exceptions import NoCredentialsError
+import io
+
 
 # Create your models here.
 def resize_image(image, max_width=500, max_height=500):
