@@ -39,11 +39,11 @@ class HousingForm(forms.ModelForm):
             'housing_image5': 'Please insert an image',
         }
         widgets = {
-            'Address': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Address', 'style': 'color: #555; height: 50px; width: 300px; resize: none;'}),
-            'Bedrooms': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Number of Bedrooms', 'style': 'height: 50px; width: 300px; resize: none;'}),
-            'Bathrooms': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Number of Bathrooms', 'style': 'height: 50px; width: 300px; resize: none;'}),
-            'Description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Description', 'style': 'height: 200px; width: 400px; resize: none;'}),
-            'Rating': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Rating (Number From 1-5)', 'style': 'height: 50px; width: 300px; resize: none;'}),
-            'Price': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter how much you pay per month', 'style': 'height: 50px; width: 300px; resize: none;'}),
-            'LandLord': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter LandLords Full Name, Example: Hugh Manatee', 'style': 'height: 50px; width: 300px; resize: none;'}),
+            'address': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Address', 'style': 'color: #555; height: 50px; width: 300px; resize: none;'}),
+            'bedrooms': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Number of Bedrooms', 'style': 'height: 50px; width: 300px; resize: none;'}),
+            'bathrooms': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Number of Bathrooms', 'style': 'height: 50px; width: 300px; resize: none;'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Description', 'style': 'height: 200px; width: 400px; resize: none;'}),
+            'rating': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Rating (Number From 1-5)', 'style': 'height: 50px; width: 300px; resize: none;'}),
+            'price': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter how much you pay per month', 'style': 'height: 50px; width: 300px; resize: none;'}),
+            'landLord': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter LandLords Full Name, Example: Hugh Manatee', 'style': 'height: 50px; width: 300px; resize: none;'}),
         }
