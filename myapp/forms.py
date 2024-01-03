@@ -21,12 +21,12 @@ class LandlordForm(forms.ModelForm):
      }
 
 class HousingForm(forms.ModelForm):
-       class Meta:
+    class Meta:
         model = Housing
         fields = ('Address', 'Bedrooms', 'Bathrooms', 'Description', 'Rating', 'Price', 'LandLord', 'housing_image', 'housing_image2', 'housing_image3', 'housing_image4', 'housing_image5')
         labels = {
             'Address': '',
-            'Bedrooms': '',  # Make sure it's an empty string
+            'Bedrooms': '',  
             'Bathrooms': '',
             'Description': '',
             'Rating': '',
