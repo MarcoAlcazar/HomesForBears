@@ -23,15 +23,15 @@ class LandlordForm(forms.ModelForm):
 class HousingForm(forms.ModelForm):
     class Meta:
         model = Housing
-        fields = ('Address', 'Bedrooms', 'Bathrooms', 'Description', 'Rating', 'Price', 'LandLord', 'housing_image', 'housing_image2', 'housing_image3', 'housing_image4', 'housing_image5')
+        fields = ('address', 'bedrooms', 'bathrooms', 'description', 'rating', 'price', 'landLord', 'housing_image', 'housing_image2', 'housing_image3', 'housing_image4', 'housing_image5')
         labels = {
-            'Address': '',
-            'Bedrooms': '',  
-            'Bathrooms': '',
-            'Description': '',
-            'Rating': '',
-            'Price': '',
-            'LandLord': '',
+            'address': '',
+            'bedrooms': '',  
+            'bathrooms': '',
+            'description': '',
+            'rating': '',
+            'price': '',
+            'landLord': '',
             'housing_image': 'Please insert your main image',
             'housing_image2': 'Please insert an image',
             'housing_image3': 'Please insert an image',
