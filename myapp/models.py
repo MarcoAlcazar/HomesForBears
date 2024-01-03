@@ -62,8 +62,7 @@ class Housing(models.Model):
         image.save(output, format='JPEG', quality=90)
         output.seek(0)
         image_field.file = InMemoryUploadedFile(output, 'ImageField', f"{image_field.name.split('.')[0]}_resized.jpg",
-                                                'image/jpeg', output.tell(), None)
-
+                                        'image/jpeg', output.tell(), None)
 
 
 
