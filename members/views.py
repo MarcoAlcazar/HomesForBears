@@ -12,6 +12,9 @@ from django.utils.encoding import force_bytes, force_str
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
 from .tokens import account_activation_token
+import boto3
+from botocore.exceptions import NoCredentialsError
+import json 
 
 class UserEditView(generic.UpdateView):
     form_class = EditProfileForm
@@ -72,21 +75,48 @@ def activateEmail(request, user, to_email):
     else:
         message.error(request, f'There was an error sending email to {to_email}, check for spelling mistakes.')
 
-def register_user(request) :
+def upload_to_s3(data, user_id):
+    """
+    Upload user data to an S3 bucket.
+    """
+    S3_BUCKET = 'your-s3-bucket-name'
+    S3_KEY = f'users/{user_id}.json'
+
+    # Initialize the S3 client
+    s3 = boto3.client('s3', aws_access_key_id='AKIAW3TQQ24DWM5MXPNB', aws_secret_access_key='9Nc95djUkBeX6boHcksFG7HH/JWaSTyyMTD7nT6W')
+
+    try:
+        # Upload data to S3
+        s3.put_object(Body=data, Bucket=S3_BUCKET, Key=S3_KEY)
+    except NoCredentialsError:
+        print("Credentials not available")
+
+def register_user(request):
     if request.method == "POST":
         form = RegisterUserForm(request.POST)
         if form.is_valid():
-            user = form.save(commit = False)
-            #username = form.cleaned_data['username']
-            #password = form.cleaned_data['password1']
-            #user = authenticate(username = username, password = password)
+            user = form.save(commit=False)
             user.is_active = False
             user.save()
-            activateEmail(request, user, form.cleaned_data.get('email'))
-            return redirect('index')
-    else: 
-        form  = RegisterUserForm()
-    return render(request, 'authenticate/register_user.html', {'form':form})
 
+            # Convert user data to JSON format (customize as per your user model)
+            user_data = {
+                'username': user.username,
+                'email': user.email,
+                # Add other fields as needed
+            }
+            user_data_json = json.dumps(user_data)
+
+            # Upload user data to S3
+            upload_to_s3(user_data_json, user.id)
+
+            # Send activation email
+            activateEmail(request, user, form.cleaned_data.get('email'))
+
+            return redirect('index')
+    else:
+        form = RegisterUserForm()
+
+    return render(request, 'authenticate/register_user.html', {'form': form})
 
 # Create your views here.
