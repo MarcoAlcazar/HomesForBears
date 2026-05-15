@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}Browse – HomesForBears{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+
+  <!-- Housing -->
+  <h2 class="section-title">Housing Listings</h2>
+  {% if apartments %}
+  <div class="row g-4 mb-3">
+    {% for house in apartments %}
+    <div class="col-sm-6 col-lg-4">
+      <a href="{% url 'show-house' house.id %}" class="text-decoration-none">
+        <div class="card h-100">
+          {% if house.housing_image %}
+            <img src="{{ house.housing_image.url }}" class="card-img-top" alt="{{ house.Address }}">
+          {% else %}
+            <div class="card-img-placeholder">🏠</div>
+          {% endif %}
+          <div class="card-body">
+            <h6 class="fw-bold mb-1 text-blue">{{ house.Address }}</h6>
+            <div class="d-flex gap-2 flex-wrap mb-2">
+              <span class="badge-gold">★ {{ house.Rating }}/5</span>
+              <span class="text-muted small">{{ house.Bedrooms }} bd · {{ house.Bathrooms }} ba</span>
+            </div>
+            <p class="fw-bold text-blue mb-0">${{ house.Price }}<span class="text-muted fw-normal">/mo</span></p>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+  <nav>
+    <ul class="pagination">
+      {% if apartments.has_previous %}
+        <li class="page-item"><a class="page-link" href="?apartment_page=1">&laquo;</a></li>
+        <li class="page-item"><a class="page-link" href="?apartment_page={{ apartments.previous_page_number }}">Prev</a></li>
+      {% endif %}
+      <li class="page-item disabled"><span class="page-link">{{ apartments.number }} / {{ apartments.paginator.num_pages }}</span></li>
+      {% if apartments.has_next %}
+        <li class="page-item"><a class="page-link" href="?apartment_page={{ apartments.next_page_number }}">Next</a></li>
+        <li class="page-item"><a class="page-link" href="?apartment_page={{ apartments.paginator.num_pages }}">&raquo;</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% else %}
+  <p class="text-muted">No housing listings yet. <a href="{% url 'Housing_create' %}">Add one!</a></p>
+  {% endif %}
+
+  <!-- Landlords -->
+  <h2 class="section-title mt-5">Landlords</h2>
+  {% if landlords %}
+  <div class="row g-3 mb-3">
+    {% for landlord in landlords %}
+    <div class="col-sm-6 col-lg-4">
+      <a href="{% url 'show-landlord' landlord.id %}" class="text-decoration-none">
+        <div class="card h-100 p-3">
+          <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle bg-blue text-white d-flex align-items-center justify-content-center fw-bold"
+                 style="width:48px;height:48px;font-size:1.2rem;flex-shrink:0;">
+              {{ landlord.FullName|first|upper }}
+            </div>
+            <div>
+              <h6 class="mb-0 fw-bold text-blue">{{ landlord.FullName }}</h6>
+              <span class="stars">{% for i in "12345" %}{% if forloop.counter <= landlord.Rating %}★{% else %}☆{% endif %}{% endfor %}</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+  <nav>
+    <ul class="pagination">
+      {% if landlords.has_previous %}
+        <li class="page-item"><a class="page-link" href="?landlord_page=1">&laquo;</a></li>
+        <li class="page-item"><a class="page-link" href="?landlord_page={{ landlords.previous_page_number }}">Prev</a></li>
+      {% endif %}
+      <li class="page-item disabled"><span class="page-link">{{ landlords.number }} / {{ landlords.paginator.num_pages }}</span></li>
+      {% if landlords.has_next %}
+        <li class="page-item"><a class="page-link" href="?landlord_page={{ landlords.next_page_number }}">Next</a></li>
+        <li class="page-item"><a class="page-link" href="?landlord_page={{ landlords.paginator.num_pages }}">&raquo;</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% else %}
+  <p class="text-muted">No landlords yet. <a href="{% url 'Landlord_create' %}">Add one!</a></p>
+  {% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Add a Review – HomesForBears{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <div class="detail-card text-center" style="max-width:500px;">
+    <h2 class="fw-bold text-blue mb-3">Add a Review</h2>
+    <p class="text-muted mb-4">Start by reviewing the landlord, then add the housing listing.</p>
+    <a href="{% url 'Landlord_create' %}" class="btn btn-primary px-4">Review a Landlord</a>
+  </div>
+</div>
+{% endblock %}

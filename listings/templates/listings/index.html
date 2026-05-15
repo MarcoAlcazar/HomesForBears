@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}HomesForBears – Berkeley Housing{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="container">
+    <h1>Find Your Home Near Berkeley</h1>
+    <p>Browse verified off-campus housing and landlord reviews from fellow Cal students.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="{% url 'apartmentss' %}" class="btn btn-accent btn-lg px-4">Browse Housing</a>
+      <a href="{% url 'Landlord_create' %}" class="btn btn-outline-light btn-lg px-4">Add a Review</a>
+    </div>
+  </div>
+</section>
+
+<div class="container py-5">
+  {% if user.is_authenticated %}
+  <div class="alert alert-warning border-0 mb-4" style="background:rgba(253,181,21,.15); border-left: 4px solid var(--gold) !important;">
+    <strong>Welcome back, {{ user.first_name }}!</strong> Ready to find your next place?
+  </div>
+  {% endif %}
+
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100 text-center p-4">
+        <div class="fs-1 mb-3">🏠</div>
+        <h5 class="fw-bold text-blue">Browse Listings</h5>
+        <p class="text-muted">Search apartments near campus with ratings, photos, and pricing.</p>
+        <a href="{% url 'apartmentss' %}" class="btn btn-primary mt-auto">View All</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 text-center p-4">
+        <div class="fs-1 mb-3">✍️</div>
+        <h5 class="fw-bold text-blue">Review a Landlord</h5>
+        <p class="text-muted">Share your experience to help other Bears make informed decisions.</p>
+        <a href="{% url 'Landlord_create' %}" class="btn btn-primary mt-auto">Write Review</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 text-center p-4">
+        <div class="fs-1 mb-3">🔍</div>
+        <h5 class="fw-bold text-blue">Search by Address</h5>
+        <p class="text-muted">Looking for a specific street or neighborhood? Search directly.</p>
+        <a href="{% url 'apartmentss' %}" class="btn btn-primary mt-auto">Search Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

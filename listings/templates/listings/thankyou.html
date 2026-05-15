@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Submitted – HomesForBears{% endblock %}
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-card text-center">
+    <div class="fs-1 mb-3">🎉</div>
+    <h2>Thank You!</h2>
+    <p class="text-muted">Your review was submitted successfully. On behalf of the CalHabitat team, thank you for helping fellow Bears find their home.</p>
+    <a href="{% url 'index' %}" class="btn btn-primary mt-3 px-4">Back to Home</a>
+    <a href="{% url 'apartmentss' %}" class="btn btn-outline-secondary mt-3 px-4">Browse Listings</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,285 @@
+/* ── Variables ─────────────────────────────────────────── */
+:root {
+  --blue:  #003262;
+  --gold:  #FDB515;
+  --gold-dark: #e0a010;
+  --bg:    #f4f6f9;
+  --card:  #ffffff;
+  --text:  #1a1a2e;
+  --muted: #6c757d;
+  --radius: 12px;
+  --shadow: 0 2px 12px rgba(0,0,0,.10);
+}
+
+/* ── Base ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1; }
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { color: var(--gold-dark); }
+
+/* ── Navbar ────────────────────────────────────────────── */
+.navbar {
+  background: var(--blue) !important;
+  padding: .75rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--gold) !important;
+  letter-spacing: .5px;
+}
+
+.navbar .nav-link {
+  color: rgba(255,255,255,.85) !important;
+  font-weight: 500;
+  padding: .4rem .75rem !important;
+  border-radius: 6px;
+  transition: background .2s, color .2s;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  background: rgba(253,181,21,.15);
+  color: var(--gold) !important;
+}
+
+.navbar .btn-gold {
+  background: var(--gold);
+  color: var(--blue);
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: .35rem .9rem;
+  transition: background .2s;
+}
+.navbar .btn-gold:hover { background: var(--gold-dark); }
+
+.search-input { min-width: 180px; }
+
+/* ── Hero ──────────────────────────────────────────────── */
+.hero {
+  background: linear-gradient(135deg, var(--blue) 60%, #00509e 100%);
+  color: #fff;
+  padding: 5rem 1.5rem 4rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--gold);
+  margin-bottom: .75rem;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  opacity: .85;
+  max-width: 540px;
+  margin: 0 auto 2rem;
+}
+
+/* ── Cards ─────────────────────────────────────────────── */
+.card {
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform .2s, box-shadow .2s;
+  overflow: hidden;
+}
+
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.14); }
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  background: #dde3ea;
+}
+
+.card-img-placeholder {
+  height: 200px;
+  background: linear-gradient(135deg, #dde3ea 0%, #c5cedb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 2.5rem;
+}
+
+.badge-gold {
+  background: var(--gold);
+  color: var(--blue);
+  font-weight: 700;
+  border-radius: 20px;
+  padding: .25rem .65rem;
+  font-size: .78rem;
+}
+
+/* ── Stars ─────────────────────────────────────────────── */
+.stars { color: var(--gold); font-size: 1.1rem; letter-spacing: 1px; }
+
+/* ── Section headings ──────────────────────────────────── */
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 1.5rem;
+  padding-bottom: .5rem;
+  border-bottom: 3px solid var(--gold);
+  display: inline-block;
+}
+
+/* ── Detail page ───────────────────────────────────────── */
+.detail-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.detail-label {
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.detail-value {
+  font-size: 1rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.stat-box {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: .9rem 1.2rem;
+  text-align: center;
+}
+
+.stat-box .num {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--blue);
+  line-height: 1;
+}
+
+.stat-box .lbl {
+  font-size: .75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.gallery img {
+  border-radius: 10px;
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/* ── Auth / Form pages ─────────────────────────────────── */
+.auth-wrapper {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.auth-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 460px;
+}
+
+.auth-card h2 {
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem 2.5rem;
+  max-width: 700px;
+  margin: 2rem auto;
+}
+
+.form-card h2 {
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Buttons ───────────────────────────────────────────── */
+.btn-primary {
+  background: var(--blue);
+  border-color: var(--blue);
+  font-weight: 600;
+}
+.btn-primary:hover { background: #004080; border-color: #004080; }
+
+.btn-accent {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--blue);
+  font-weight: 700;
+}
+.btn-accent:hover { background: var(--gold-dark); border-color: var(--gold-dark); color: var(--blue); }
+
+/* ── Pagination ─────────────────────────────────────────── */
+.page-link { color: var(--blue); }
+.page-item.active .page-link { background: var(--blue); border-color: var(--blue); }
+
+/* ── Footer ─────────────────────────────────────────────── */
+footer {
+  background: var(--blue);
+  color: rgba(255,255,255,.7);
+  padding: 1.25rem;
+  text-align: center;
+  font-size: .875rem;
+  margin-top: auto;
+}
+
+footer a { color: var(--gold); }
+
+/* ── Search results ─────────────────────────────────────── */
+.result-item {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem 1.5rem;
+  margin-bottom: .75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform .15s;
+}
+.result-item:hover { transform: translateX(4px); }
+
+/* ── Utility ─────────────────────────────────────────────── */
+.text-gold { color: var(--gold); }
+.text-blue { color: var(--blue); }
+.bg-blue   { background: var(--blue); }
+.bg-gold   { background: var(--gold); }

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}{{ house.Address }} – HomesForBears{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+  <a href="{% url 'apartmentss' %}" class="btn btn-sm btn-outline-secondary mb-4">&larr; Back to listings</a>
+
+  <div class="detail-card">
+    <div class="row g-4">
+
+      <!-- Left: info -->
+      <div class="col-lg-5">
+        <h2 class="fw-bold text-blue mb-1">{{ house.Address }}</h2>
+        {% if user_username %}
+        <p class="text-muted small mb-3">Posted by {{ user_username }}</p>
+        {% endif %}
+
+        <div class="row g-3 mb-4">
+          <div class="col-4">
+            <div class="stat-box">
+              <div class="num">{{ house.Rating }}<span style="font-size:1rem">/5</span></div>
+              <div class="lbl">Rating</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stat-box">
+              <div class="num">{{ house.Bedrooms }}</div>
+              <div class="lbl">Bedrooms</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stat-box">
+              <div class="num">{{ house.Bathrooms }}</div>
+              <div class="lbl">Bathrooms</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <span class="detail-label">Monthly Rent</span>
+          <p class="fs-3 fw-bold text-blue mb-0">${{ house.Price }}<span class="text-muted fs-6 fw-normal">/mo</span></p>
+        </div>
+
+        <div class="mb-3">
+          <span class="detail-label">Landlord</span>
+          <p class="detail-value">{{ house.LandLord }}</p>
+        </div>
+
+        <div class="mb-4">
+          <span class="detail-label">Description</span>
+          <p class="detail-value">{{ house.Description }}</p>
+        </div>
+
+        <a href="{% url 'index' %}" class="btn btn-primary">Home</a>
+      </div>
+
+      <!-- Right: gallery -->
+      <div class="col-lg-7">
+        <div class="gallery">
+          {% if house.housing_image %}<img src="{{ house.housing_image.url }}" alt="Photo 1">{% endif %}
+          {% if house.housing_image2 %}<img src="{{ house.housing_image2.url }}" alt="Photo 2">{% endif %}
+          {% if house.housing_image3 %}<img src="{{ house.housing_image3.url }}" alt="Photo 3">{% endif %}
+          {% if house.housing_image4 %}<img src="{{ house.housing_image4.url }}" alt="Photo 4">{% endif %}
+          {% if house.housing_image5 %}<img src="{{ house.housing_image5.url }}" alt="Photo 5">{% endif %}
+          {% if not house.housing_image %}
+          <div class="card-img-placeholder rounded" style="height:280px;font-size:4rem;">🏠</div>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

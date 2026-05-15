@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}{{ landlord.FullName }} – HomesForBears{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+  <a href="{% url 'apartmentss' %}" class="btn btn-sm btn-outline-secondary mb-4">&larr; Back to listings</a>
+
+  <div class="detail-card" style="max-width:600px;">
+    <div class="d-flex align-items-center gap-4 mb-4">
+      <div class="rounded-circle bg-blue text-white d-flex align-items-center justify-content-center fw-bold"
+           style="width:72px;height:72px;font-size:2rem;flex-shrink:0;">
+        {{ landlord.FullName|first|upper }}
+      </div>
+      <div>
+        <h2 class="fw-bold text-blue mb-1">{{ landlord.FullName }}</h2>
+        <div class="stars fs-5">
+          {% for i in "12345" %}{% if forloop.counter <= landlord.Rating %}★{% else %}☆{% endif %}{% endfor %}
+          <span class="text-muted small ms-1">{{ landlord.Rating }}/5</span>
+        </div>
+      </div>
+    </div>
+
+    {% if user_username %}
+    <p class="text-muted small">Posted by {{ user_username }}</p>
+    {% endif %}
+
+    <div class="mb-4">
+      <span class="detail-label">Description</span>
+      <p class="detail-value mt-1">{{ landlord.Description }}</p>
+    </div>
+
+    <a href="{% url 'index' %}" class="btn btn-primary">Home</a>
+  </div>
+</div>
+
+{% endblock %}

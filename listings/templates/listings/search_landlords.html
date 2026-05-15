@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Search Landlords – HomesForBears{% endblock %}
+{% block content %}
+<div class="container py-5">
+  {% if searched %}
+    <h2 class="section-title">Results for "{{ searched }}"</h2>
+    {% if landlords %}
+      {% for landlord in landlords %}
+      <a href="{% url 'show-landlord' landlord.id %}" class="text-decoration-none">
+        <div class="result-item">
+          <div>
+            <p class="fw-bold text-blue mb-0">{{ landlord.FullName }}</p>
+          </div>
+          <span class="stars">{% for i in "12345" %}{% if forloop.counter <= landlord.Rating %}★{% else %}☆{% endif %}{% endfor %}</span>
+        </div>
+      </a>
+      {% endfor %}
+    {% else %}
+      <p class="text-muted">No landlords found for "{{ searched }}".</p>
+    {% endif %}
+  {% else %}
+    <div class="text-center py-5">
+      <div class="fs-1 mb-3">🔍</div>
+      <h3 class="text-blue">Use the search bar above to find a landlord.</h3>
+    </div>
+  {% endif %}
+  <a href="{% url 'index' %}" class="btn btn-outline-secondary mt-3">&larr; Home</a>
+</div>
+{% endblock %}

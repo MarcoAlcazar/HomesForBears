@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}About – HomesForBears{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <div class="detail-card" style="max-width:700px;">
+    <h2 class="fw-bold text-blue mb-3">About HomesForBears</h2>
+    <p>HomesForBears is a student-run platform helping UC Berkeley students find and review off-campus housing and landlords.</p>
+    <p>Only <strong>@berkeley.edu</strong> email addresses can register, keeping reviews trusted and relevant to the Cal community.</p>
+    <a href="{% url 'index' %}" class="btn btn-primary mt-2">Home</a>
+  </div>
+</div>
+{% endblock %}
